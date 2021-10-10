@@ -14,6 +14,7 @@ O	 {x--;}
 [a-zA-DF-MP-RT-Z]	 {x=x;y=y;}
 [0-9]	 {x=x;y=y;}
 [ ]      {x=x;y=y;}
+.	  {x=x;y=y;}
 %%
 
 int main(int argc, char** argv){
