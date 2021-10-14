@@ -1,6 +1,7 @@
 Pregunta2:
-	flex Pregunta2.l
-	gcc lex.yy.c -ll -o pregunta2
+	flex pregunta2.l
+	bison -d pregunta2.y
+	gcc -Wall -o pregunta2 pregunta2.tab.c lex.yy.c -ll
 
 clean:
-	rm -f *.c *.exe pregunta2
+	rm -f *.c *.exe *.h pregunta2

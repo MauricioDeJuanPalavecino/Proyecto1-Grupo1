@@ -66,7 +66,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "prueba.y"
+#line 1 "pregunta2.y"
 
 #include <stdio.h>
 
@@ -77,7 +77,7 @@ void yyerror(const char *s){
 	fprintf(stderr, "%s\n", s);
 }
 
-#line 81 "prueba.tab.c"
+#line 81 "pregunta2.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -110,8 +110,8 @@ void yyerror(const char *s){
 
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
-#ifndef YY_YY_PRUEBA_TAB_H_INCLUDED
-# define YY_YY_PRUEBA_TAB_H_INCLUDED
+#ifndef YY_YY_PREGUNTA2_TAB_H_INCLUDED
+# define YY_YY_PREGUNTA2_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -145,7 +145,7 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_PRUEBA_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PREGUNTA2_TAB_H_INCLUDED  */
 
 
 
@@ -451,7 +451,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   7
+#define YYLAST   12
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  8
@@ -508,7 +508,7 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    17,    17,    18,    21,    22,    24,    25,    26,    27
+       0,    17,    17,    18,    21,    22,    27,    28,    29,    30
 };
 #endif
 
@@ -531,7 +531,7 @@ static const yytype_int16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF (-7)
+#define YYPACT_NINF (-9)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -545,8 +545,8 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -7,     0,    -7,    -7,    -7,    -7,    -7,    -7,    -7,    -6,
-      -7
+      -9,     0,    -9,    -9,    -9,    -9,    -9,    -9,    -9,     5,
+      -9
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -561,7 +561,7 @@ static const yytype_int8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -7,    -7,    -7,    -7
+      -9,    -9,    -8,    -9
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -575,12 +575,14 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       2,    10,     0,     3,     4,     5,     6,     7
+       2,    10,     0,     3,     4,     5,     6,     7,     3,     4,
+       5,     6,     7
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,     7,    -1,     3,     4,     5,     6,     7
+       0,     9,    -1,     3,     4,     5,     6,     7,     3,     4,
+       5,     6,     7
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -588,7 +590,7 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,     9,     0,     3,     4,     5,     6,     7,    10,    11,
-       7
+      10
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -1296,37 +1298,37 @@ yyreduce:
   switch (yyn)
     {
   case 5:
-#line 22 "prueba.y"
-                       {x=x; y=y;}
-#line 1302 "prueba.tab.c"
+#line 22 "pregunta2.y"
+                    {x=x; y=y;}
+#line 1304 "pregunta2.tab.c"
     break;
 
   case 6:
-#line 24 "prueba.y"
+#line 27 "pregunta2.y"
                   {x++;y++;}
-#line 1308 "prueba.tab.c"
+#line 1310 "pregunta2.tab.c"
     break;
 
   case 7:
-#line 25 "prueba.y"
+#line 28 "pregunta2.y"
                   {x++;y--;}
-#line 1314 "prueba.tab.c"
+#line 1316 "pregunta2.tab.c"
     break;
 
   case 8:
-#line 26 "prueba.y"
+#line 29 "pregunta2.y"
                    {x--;y++;}
-#line 1320 "prueba.tab.c"
+#line 1322 "pregunta2.tab.c"
     break;
 
   case 9:
-#line 27 "prueba.y"
+#line 30 "pregunta2.y"
                    {x--;y--;}
-#line 1326 "prueba.tab.c"
+#line 1328 "pregunta2.tab.c"
     break;
 
 
-#line 1330 "prueba.tab.c"
+#line 1332 "pregunta2.tab.c"
 
       default: break;
     }
@@ -1558,7 +1560,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 29 "prueba.y"
+#line 35 "pregunta2.y"
 
 
 int main(int argc, char **argv){

@@ -9,7 +9,7 @@ void yyerror(const char *s){
 }
 %}
 
-%token NORESTE NOROESTE SURESTE SUROESTE
+%token NORESTE NOROESTE SURESTE SUROESTE 
 %token FINLINEA
 
 %%
@@ -19,14 +19,19 @@ input	:
 	;
 
 linea	: FINLINEA
-	| exp FINLINEA {x=x; y=y;}
+	| exp linea {x=x; y=y;}
 	;
-exp	: NORESTE {x++;y++;}
+
+
+
+exp:  	  NORESTE {x++;y++;}
 	| SURESTE {x++;y--;}
 	| NOROESTE {x--;y++;}
 	| SUROESTE {x--;y--;}
 	;
-	
+
+
+
 %%
 
 int main(int argc, char **argv){
