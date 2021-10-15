@@ -1,22 +1,25 @@
+%option noyywrap nodefault yylineno
 %{
+#include "pregunta2.h"
 #include "pregunta2.tab.h"
-
 %}
-%option noinput
-%option nounput
+
+EXP ([Ee][-+]?[0-9]+)
+
 %%
 
-"NE" 	{return NORESTE;}
-"NO" 	{return NOROESTE;}
-"SE"	{return SURESTE;}
-"SO"	{return SUROESTE;}
-"EN" 	{return NORESTE;}
-"ON" 	{return NOROESTE;}
-"ES"	{return SURESTE;}
-"OS"	{return SUROESTE;}
-\n	{return FINLINEA;}
-[ \t]   {}
-.	{}
+"A" |
+"B" |
+"C" |
+"D" | { return yytext[0]; }
 
+"N" |
+"S" |
+"E" |
+"O" | { return yytext[0]; }
 
-
+\n { return FINLINEA; }
+"//".* 
+[ \t] { /* ignora espacios en blanco */ }
+. { yyerror("Caracter no reconocido %c\n", *yytext); }
+%%

@@ -1,40 +1,42 @@
 %{
 #include <stdio.h>
-
-int yylex();
-int x = 0;
-int y = 0;
-void yyerror(const char *s){
-	fprintf(stderr, "%s\n", s);
-}
+#include <stdlib.h>
+#include "pregunta2.h"
 %}
 
-%token NORESTE NOROESTE SURESTE SUROESTE 
+%union {
+  struct ast *a;
+  char d;
+}
+
+%token 'N' 'E' 'O' 'S'
+%token 'A' 'B' 'C' 'D'
 %token FINLINEA
+
+%type <a> exp
 
 %%
 
 input	:
 	| input linea
 	;
-
 linea	: FINLINEA
-	| exp linea {x=x; y=y;}
+	| exp linea
 	;
+  ;
 
-
-
-exp:  	  NORESTE {x++;y++;}
-	| SURESTE {x++;y--;}
-	| NOROESTE {x--;y++;}
-	| SUROESTE {x--;y--;}
-	;
-
-
+exp:  'A' { $$ = newast('A'); }
+  | 'B' { $$ = newast('B');}
+  | 'C' { $$ = newast('C'); }
+  | 'D' { $$ = newast('D'); }
+  | 'N' { $$ = newnum('N'); }
+  | 'E' { $$ = newnum('E'); }
+  | 'O' { $$ = newnum('O'); }
+  | 'S' { $$ = newnum('S'); }
+  ;
 
 %%
-
-int main(int argc, char **argv){
-	yyparse();
-	printf("La posición del individuo en x es: %d, la posición del individuo en y es: %d\n", x, y);
+int main(){
+  return yyparse();
+  printf("HOLAaaa");
 }
