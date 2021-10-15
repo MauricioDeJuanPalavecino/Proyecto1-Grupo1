@@ -13,6 +13,6 @@ E	{return ESTE;}
 [-0-9]+ {yylval = atoi(yytext); return NUMERO;}
 \n	{return FINLINEA;}
 [ \t]   {}
-.	{return CHARNOVALIDO;}
+.	{}
 
 

@@ -1,22 +1,18 @@
-%{
-#include "pregunta2.tab.h"
-
-%}
+%option noyywrap
 %option noinput
 %option nounput
+%{
+#include "pregunta2.tab.h"
+%}
 %%
-
-"NE" 	{return NORESTE;}
-"NO" 	{return NOROESTE;}
-"SE"	{return SURESTE;}
-"SO"	{return SUROESTE;}
-"EN" 	{return NORESTE;}
-"ON" 	{return NOROESTE;}
-"ES"	{return SURESTE;}
-"OS"	{return SUROESTE;}
-\n	{return FINLINEA;}
+"N"	{ return N; }
+"S"	{ return S; }
+"E"	{ return E; }
+"O"	{ return O; }
+"A"	{ return A; }
+"B"	{ return B; }
+"C"	{ return C; }
+"D"	{ return D; }
+\n { return FINLINEA; }
 [ \t]   {}
 .	{}
-
-
-
