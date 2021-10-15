@@ -1,25 +1,18 @@
-%option noyywrap nodefault yylineno
+%option noyywrap
+%option noinput
+%option nounput
 %{
-#include "pregunta2.h"
 #include "pregunta2.tab.h"
 %}
-
-EXP ([Ee][-+]?[0-9]+)
-
 %%
-
-"A" |
-"B" |
-"C" |
-"D" | { return yytext[0]; }
-
-"N" |
-"S" |
-"E" |
-"O" | { return yytext[0]; }
-
+"N"	{ return N; }
+"S"	{ return S; }
+"E"	{ return E; }
+"O"	{ return O; }
+"A"	{ return A; }
+"B"	{ return B; }
+"C"	{ return C; }
+"D"	{ return D; }
 \n { return FINLINEA; }
-"//".* 
-[ \t] { /* ignora espacios en blanco */ }
-. { yyerror("Caracter no reconocido %c\n", *yytext); }
-%%
+[ \t]   {}
+.	{}
