@@ -1,7 +1,6 @@
-Pregunta3:
-	flex pregunta3.l
+Pregunta3: pregunta3.l pregunta3.y
 	bison -d pregunta3.y
-	gcc -Wall -o pregunta3 pregunta3.tab.c lex.yy.c -ll
-
+	flex pregunta3.l lex.yy.c
+	gcc -o $@ pregunta3.tab.c lex.yy.c
 clean:
-	rm -f *.c *.exe *.h pregunta3
+	rm pregunta3.tab.* Pregunta3 lex.yy.c

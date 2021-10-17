@@ -1,18 +1,21 @@
-%{
-#include "pregunta3.tab.h"
-int yylval;
-%}
+%option noyywrap
 %option noinput
 %option nounput
+%option nodefault
+%option yylineno
+%{
+#include "pregunta3.tab.h"
+%}
 %%
-
-N	{return NORTE;}
-S	{return SUR;}
-O	{return OESTE;}
-E	{return ESTE;}
-[-0-9]+ {yylval = atoi(yytext); return NUMERO;}
-\n	{return FINLINEA;}
+"N"	{ return N; }
+"S"	{ return S; }
+"E"	{ return E; }
+"O"	{ return O; }
+"A"	{ return A; }
+"B"	{ return B; }
+"C"	{ return C; }
+"D"	{ return D; }
+[-0-9]+ { yylval.d = atof(yytext); return NUMERO; }
+\n { return FINLINEA; }
 [ \t]   {}
 .	{}
-
-
