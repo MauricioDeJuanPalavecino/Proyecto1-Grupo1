@@ -28,8 +28,6 @@ void newdirection(char card){
 void walk(int steps){
     switch (CURRENT_DIRECTION){
       case 'N': //NORTE
-      	printf("%d\n", norte.steps);
-      	printf("%d\n", steps);
         norte.steps = norte.steps + steps;
         break;
       case 'S': //SUR
@@ -41,30 +39,27 @@ void walk(int steps){
       case 'O': //OESTE
         oeste.steps = oeste.steps + steps;
         break;
-      case 'A': //NORESTE
-        norte.steps = norte.steps + steps;
-        este.steps = este.steps + steps;
-        break;
-      case 'B': //SURESTE
-        sur.steps = sur.steps + steps;
-        este.steps = este.steps + steps;
-        break;
-      case 'C': //SUROESTE
-        sur.steps = sur.steps + steps;
-        oeste.steps = oeste.steps + steps;
-        break;
-      case 'D': //NOROESTE
-        norte.steps = norte.steps + steps;
-        oeste.steps = oeste.steps + steps;
-        break;
       default:
         printf("Por favor escoja una dirección");
     }
 }
 
+int getX(){
+  return este.steps - oeste.steps;
+}
+int getY(){
+  return norte.steps - sur.steps;
+}
+
 void printtree(){
   printf("-nodo NORTE:\n");
   printf("	-hoja: %d\n", norte.steps);
+  printf("-nodo SUR:\n");
+  printf("	-hoja: %d\n", sur.steps);
+  printf("-nodo ESTE:\n");
+  printf("	-hoja: %d\n", este.steps);
+  printf("-nodo OESTE:\n");
+  printf("	-hoja: %d\n", oeste.steps);
 }
 
 
@@ -78,15 +73,11 @@ void yyerror(char *s){
 %}
 
 %union {
-  char c;
-}
-
-%union {
-  int d;
+  struct ast *a;
+  double d;
 }
 
 %token N S E O
-%token A B C D
 %token <d> NUMERO
 %token FINLINEA
 
@@ -101,22 +92,18 @@ linea	: FINLINEA
 	| exp linea
 	;
 	
-exp:  	  N {y++; newdirection('N');}
-	| S {y--; newdirection('S');}
-	| E {x++; newdirection('E');}
-	| O {x--; newdirection('O');}
-	| A {y++; x++; newdirection('A');}
-	| B {y--; x++; newdirection('B');}
-	| C {y--; x--; newdirection('C');}
-	| D {y++; x--; newdirection('D');}
-	| NUMERO { printf("%d\n", NUMERO); walk( (int) NUMERO); }
+exp:  	  N { newdirection('N');}
+	| S { newdirection('S');}
+	| E { newdirection('E');}
+	| O { newdirection('O');}
+	| NUMERO { walk($1); }
 	;
 
 %%
 
 int main(int argc, char **argv){
 	yyparse();
-	printf("La posición del individuo en x es: %d, la posición del individuo en y es: %d\n", x, y);
+	printf("La posición del individuo en x es: %d, la posición del individuo en y es: %d\n", getX(), getY());
 	printtree();
 	
 }
