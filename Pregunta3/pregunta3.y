@@ -6,21 +6,25 @@
 
 void yyerror(char *s);
 
-char CURRENT_DIRECTION = '\0';
+char CURRENT_DIRECTION = '\0'; //se senializa la direccion como nulo al inicio para dejar establecido despues cuando llegan los parametros
 
-int x = 0;
+//se instancian las posiciones
+int x = 0; 
 int y = 0;
 
+//estructura de los nodos y sus pasos
 typedef struct{
   char nodetype;
   int steps;
 }NODE;
 
+//se definen los nodos para el arbol
 NODE norte = { .nodetype = 'N', .steps = 0 };
 NODE sur = { .nodetype = 'S', .steps = 0 };
 NODE este = { .nodetype = 'E', .steps = 0 };
 NODE oeste = { .nodetype = 'O', .steps = 0 };
 
+//se senializa la dirección encargada
 void newdirection(char card){
   CURRENT_DIRECTION = card;
 }
@@ -44,13 +48,17 @@ void walk(int steps){
     }
 }
 
+//se obtiene x para el resultado final
 int getX(){
   return este.steps - oeste.steps;
 }
+
+//se obtiene y para el resultado final
 int getY(){
   return norte.steps - sur.steps;
 }
 
+//se imprime el arbol dado
 void printtree(){
   printf("-nodo NORTE:\n");
   printf("	-hoja: %d\n", norte.steps);

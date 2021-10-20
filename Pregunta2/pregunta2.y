@@ -4,27 +4,27 @@
 #include <stdarg.h>
 #include <string.h>
 
-void yyerror(char *s);
+void yyerror(char *s); //En caso de haber error de sintaxsis señala un error
 
-char TREE[1000];
-int nNodes = 0;
-int x = 0;
-int y = 0;
+char TREE[1000]; //definimos un arbol de tipo char para ejecutar el ast
+int nNodes = 0; //los nodos determinan el arbol para trabajarlo en la funcion prtree
+int x = 0; //coordenada x
+int y = 0; //coordenada y
 
-typedef struct{
+typedef struct{ //estructura para los nodos del arbol
   char nodetype;
   char x_cardinal;
   char y_cardinal;
 }NODE;
 
-void newnode(char c[]){
+void newnode(char c[]){ //se instancia un nuevo nodo
   strcat(TREE,c);
 }
-void checklen(){
+void checklen(){ //se chequea el tamaño del arbol
   nNodes = strlen(TREE);
 }
 
-void prtree(){
+void prtree(){ //impresion del arbol
   NODE* nodes = malloc(nNodes * sizeof *nodes);
   for (int i = 0; i<nNodes; i++){
     nodes[i].nodetype = TREE[i];
@@ -68,10 +68,10 @@ void yyerror(char *s){
 }
 
 
-
+//luego aparecen las reglas de produccion ocupadas en esta pregunta
 %}
 
-%union {
+%union { 
   struct ast *a;
   char c;
 }
@@ -103,7 +103,7 @@ exp:  	  N {y++; newnode("N");}
 
 %%
 
-int main(int argc, char **argv){
+int main(int argc, char **argv){//finalmente se define el arbol y la posicion del individuo
 	yyparse();
 	printf("La posición del individuo en x es: %d, la posición del individuo en y es: %d\n", x, y);
 	checklen();
